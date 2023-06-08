@@ -24,25 +24,25 @@
         </div>
         <li class="item" th:if="${role.equals('empleado')}">
           <a th:href="@{/propietario}" class="link flex">
-            <i class="bx bx-face"></i>
+            <i class="bx bx-id-card"></i>
             <span>Propietario</span>
           </a>
         </li>
         <li class="item" th:if="${role.equals('empleado')}">
           <a th:href="@{/mascota}" class="link flex">
-            <i class="bx bx-grid-alt"></i>
+            <i class="bx bx-dog"></i>
             <span>Mascotas</span>
           </a>
         </li>
         <li class="item" th:if="${role.equals('veterinario')}">
           <a th:href="@{/diagnostico}" class="link flex">
-            <i class="bx bx-grid-alt"></i>
+            <i class="bx bx-notepad"></i>
             <span>Diagnóstico</span>
           </a>
         </li>
         <li class="item" th:if="${role.equals('administrador')}">
           <a th:href="@{/usuario}" class="link flex">
-            <i class="bx bx-grid-alt"></i>
+            <i class="bx bx-user-badge"></i>
             <span>Usuario</span>
           </a>
         </li>
@@ -61,18 +61,18 @@
         </li>
         <li class="item" th:if="${role.equals('empleado')}">
           <a th:href="@{/add-mascota}" class="link flex">
-            <i class="bx bx-folder"></i>
+            <i class="bx bx-cat"></i>
             <span>Añadir Mascota</span>
           </a>
         </li>
         <li class="item" th:if="${role.equals('veterinario')}">
           <a th:href="@{/add-diagnostico}" class="link flex">
-            <i class="bx bx-cloud-upload"></i>
+            <i class="bx bx-receipt"></i>
             <span>Añadir Diagnóstico</span>
           </a>
         </li><li class="item" th:if="${role.equals('administrador')}">
         <a th:href="@{/add-usuario}" class="link flex">
-          <i class="bx bx-cloud-upload"></i>
+          <i class="bx bx-user-check"></i>
           <span>Añadir Usuario</span>
         </a>
       </li>
@@ -86,7 +86,7 @@
         </div>
         <li class="item">
           <a th:href="@{/logout}" class="link flex">
-            <i class="bx bx-cog"></i>
+            <i class="bx bx-log-out"></i>
             <span>Cerrar Sesión</span>
           </a>
         </li>
