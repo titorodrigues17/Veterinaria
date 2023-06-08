@@ -229,104 +229,12 @@ body {
       h4 {
         font-size: 22px;
         color: #333;
-        font-weight: 500px;
+        font-weight: 500;
       }
 
     </style>
 
-    <nav class="sidebar locked">
-      <div class="logo_items flex">
-        <span class="nav_image">
-          <img src="img/Logo.png" alt="logo_img" />
-        </span>
-        <span class="logo_name">VetPet</span>
-        <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
-        <i class="bx bx-x" id="sidebar-close"></i>
-      </div>
-
-      <div class="menu_container">
-        <div class="menu_items">
-          <ul class="menu_item">
-            <div class="menu_title flex">
-              <span class="title">Dashboard</span>
-              <span class="line"></span>
-            </div>
-            <li class="item">
-              <a th:href="@{/propietario}" class="link flex">
-                <i class="bx bx-face"></i>
-                <span>Propietario</span>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-grid-alt"></i>
-                <span>All Projects</span>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="menu_item">
-            <div class="menu_title flex">
-              <span class="title">Editor</span>
-              <span class="line"></span>
-            </div>
-            <li class="item">
-              <a th:href="@{/add-propietario}" class="link flex">
-                <i class="bx bx-user-plus"></i>
-                <span>Añadir Propietario</span>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-folder"></i>
-                <span>New Projects</span>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-cloud-upload"></i>
-                <span>Upload New</span>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="menu_item">
-            <div class="menu_title flex">
-              <span class="title">Setting</span>
-              <span class="line"></span>
-            </div>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-flag"></i>
-                <span>Notice Board</span>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-award"></i>
-                <span>Award</span>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#" class="link flex">
-                <i class="bx bx-cog"></i>
-                <span>Setting</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="sidebar_profile flex">
-          <span class="nav_image">
-            <img src="img/Avatar.png" alt="logo_img" />
-          </span>
-          <div class="data_text">
-              <span th:text="${name}" class="name"></span>
-              <span th:text="${email}" class="email"></span>
-              <span th:text="${role}" class="email"></span>
-          </div>
-        </div>
-      </div>
+    <nav th:insert="/navbar :: navbar">
     </nav>
     <div class="navbar">
     <h4 >  "Cuidando y amando a tus mascotas con pasión y experiencia. Donde la salud, el bienestar y la felicidad se encuentran en cada pata. ¡Tu mejor amigo se merece lo mejor!"</h4>

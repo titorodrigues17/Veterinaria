@@ -157,7 +157,7 @@
     font-size: 18px;
     color: #333;
   }
-  .sidebar_profile .email {
+  .sidebar_profile .vaccines {
     font-size: 15px;
     color: #333;
   }
@@ -302,24 +302,30 @@
 </nav>
 <div class="navbar">
 
-  <form id="add-proprietor-form" class="form-container" th:action="@{/add-propietario}" method="POST">
+  <form id="add-proprietor-form" class="form-container" th:action="@{/add-mascota}" method="POST">
     <label for="name" class="form-label">Nombre:</label>
-    <input type="text" id="name" name="name" th:value="${propietario.getName()}" class="form-input" required>
+    <input type="text" id="name" name="name" th:value="${mascota.getName()}" class="form-input" required>
 
-    <input type="text" id="id" name="id" th:value="${propietario.getId()}" class="form-input" style="display: none">
+    <input type="text" id="id" name="id" th:value="${mascota.getId()}" class="form-input" style="display: none">
 
-    <label for="identification" class="form-label">Identificación:</label>
-    <input type="text" id="identification" th:value="${propietario.getIdentification()}" name="identification" class="form-input"
-           required>
+    <label for="age" class="form-label">Edad:</label>
+    <input type="number" id="age" th:value="${mascota.getAge()}" name="age" class="form-input" required>
 
-    <label for="cellphone" class="form-label">Teléfono:</label>
-    <input type="text" id="cellphone" name="cellphone" th:value="${propietario.getCellphone()}" class="form-input" required>
+    <label for="gender" class="form-label">Género:</label>
+    <input type="text" id="gender" name="gender" th:value="${mascota.getGender()}" class="form-input" required>
 
-    <label for="location" class="form-label">Ubicación:</label>
-    <input type="text" id="location" name="location" th:value="${propietario.getLocation()}" class="form-input" required>
+    <label for="breed" class="form-label">Raza:</label>
+    <input type="text" id="breed" name="breed" th:value="${mascota.getBreed()}" class="form-input" required>
 
-    <label for="email" class="form-label">Email:</label>
-    <input type="email" id="email" name="email" th:value="${propietario.getEmail()}" class="form-input">
+    <label for="vaccines" class="form-label">Vacunas:</label>
+    <input type="text" id="vaccines" name="vaccines" th:value="${mascota.getVaccines()}" class="form-input">
+
+    <label for="proprietor" class="form-label">Propietarios:</label>
+    <select id="proprietor" name="propietario" class="form-input">
+      <option th:each="propietario : ${propietarios}" th:value="${propietario.id}"
+              th:selected="${mascota.getPropietario() != null && propietario.getId() == mascota.getPropietario().getId()}"
+              th:text="${propietario.id + ' - ' + propietario.getName()}"></option>
+    </select>
 
     <button type="submit" class="form-button">Guardar</button>
   </form>

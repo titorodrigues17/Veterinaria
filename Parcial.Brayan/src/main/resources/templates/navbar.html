@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<nav class="sidebar locked" th:fragment="navbar">
+  <div class="logo_items flex">
+        <span class="nav_image">
+          <img src="img/Logo.png" alt="logo_img" />
+        </span>
+    <span class="logo_name">VetPet</span>
+    <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+    <i class="bx bx-x" id="sidebar-close"></i>
+  </div>
+
+  <div class="menu_container">
+    <div class="menu_items">
+      <ul class="menu_item">
+        <div class="menu_title flex">
+          <span class="title">Dashboard</span>
+          <span class="line"></span>
+        </div>
+        <li class="item" th:if="${role.equals('empleado')}">
+          <a th:href="@{/propietario}" class="link flex">
+            <i class="bx bx-face"></i>
+            <span>Propietario</span>
+          </a>
+        </li>
+        <li class="item" th:if="${role.equals('empleado')}">
+          <a th:href="@{/mascota}" class="link flex">
+            <i class="bx bx-grid-alt"></i>
+            <span>Mascotas</span>
+          </a>
+        </li>
+        <li class="item" th:if="${role.equals('veterinario')}">
+          <a th:href="@{/diagnostico}" class="link flex">
+            <i class="bx bx-grid-alt"></i>
+            <span>Diagnóstico</span>
+          </a>
+        </li>
+        <li class="item" th:if="${role.equals('administrador')}">
+          <a th:href="@{/usuario}" class="link flex">
+            <i class="bx bx-grid-alt"></i>
+            <span>Usuario</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="menu_item">
+        <div class="menu_title flex">
+          <span class="title">Editor</span>
+          <span class="line"></span>
+        </div>
+        <li class="item" th:if="${role.equals('empleado')}">
+          <a th:href="@{/add-propietario}" class="link flex">
+            <i class="bx bx-user-plus"></i>
+            <span>Añadir Propietario</span>
+          </a>
+        </li>
+        <li class="item" th:if="${role.equals('empleado')}">
+          <a th:href="@{/add-mascota}" class="link flex">
+            <i class="bx bx-folder"></i>
+            <span>Añadir Mascota</span>
+          </a>
+        </li>
+        <li class="item" th:if="${role.equals('veterinario')}">
+          <a th:href="@{/add-diagnostico}" class="link flex">
+            <i class="bx bx-cloud-upload"></i>
+            <span>Añadir Diagnóstico</span>
+          </a>
+        </li><li class="item" th:if="${role.equals('administrador')}">
+        <a th:href="@{/add-usuario}" class="link flex">
+          <i class="bx bx-cloud-upload"></i>
+          <span>Añadir Usuario</span>
+        </a>
+      </li>
+
+      </ul>
+
+      <ul class="menu_item">
+        <div class="menu_title flex">
+          <span class="title">Setting</span>
+          <span class="line"></span>
+        </div>
+        <li class="item">
+          <a th:href="@{/logout}" class="link flex">
+            <i class="bx bx-cog"></i>
+            <span>Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar_profile flex">
+          <span class="nav_image">
+            <img src="img/Avatar.png" alt="logo_img" />
+          </span>
+      <div class="data_text">
+        <span th:text="${name}" class="name"></span>
+        <span th:text="${email}" class="email"></span>
+        <span th:text="${role}" class="email"></span>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

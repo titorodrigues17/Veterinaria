@@ -229,12 +229,14 @@
   h4 {
     font-size: 22px;
     color: #333;
-    font-weight: 500px;
+    font-weight: 500;
   }
   table {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 30px;
   }
 
   th, td {
@@ -259,70 +261,52 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
+      font-size: 14px;
   }
 
   .button:hover {
     background-color: #45a049;
   }
-  .form-container {
-    width: 300px;
-    margin: 20px auto;
-  }
 
-  .form-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
 
-  .form-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-
-  .form-button {
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .form-button:hover {
-    background-color: #45a049;
-  }
 </style>
 
 <nav th:insert="/navbar :: navbar">
 </nav>
 <div class="navbar">
 
-  <form id="add-proprietor-form" class="form-container" th:action="@{/add-propietario}" method="POST">
-    <label for="name" class="form-label">Nombre:</label>
-    <input type="text" id="name" name="name" th:value="${propietario.getName()}" class="form-input" required>
+  <a class="button" th:href="@{/add-mascota}" >Añadir Mascota </a>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Raza</th>
+      <th>Edad</th>
+      <th>Género</th>
+      <th>Vacunas</th>
+      <th>Propietario</th>
+      <th>Actualizar</th>
+      <th>Eliminar</th>
+    </tr>
+    <tr th:each="mascota : ${mascotas}">
+      <td th:text="${mascota.id}"></td>
+      <td th:text="${mascota.name}"></td>
+      <td th:text="${mascota.breed}"></td>
+      <td th:text="${mascota.gender}"></td>
+      <td th:text="${mascota.age}"></td>
+      <td th:text="${mascota.vaccines}"></td>
+      <td th:text="${mascota.propietario.id + ' - ' + mascota.propietario.name}"
+          th:if="${mascota.getPropietario() != null}"></td>
+      <td th:text="${'No tiene propietario'}"
+          th:if="${mascota.getPropietario() == null}"></td>
+      <td><a class="button" th:href="@{/edit-mascota/} + ${mascota.id}">Actualizar</a></td>
+      <td><button th:onclick="'deleteItem(' + ${mascota.getId()} + ')'" class="button" id="delete">Eliminar
+      </button></td>
+    </tr>
+  </table>
 
-    <input type="text" id="id" name="id" th:value="${propietario.getId()}" class="form-input" style="display: none">
 
-    <label for="identification" class="form-label">Identificación:</label>
-    <input type="text" id="identification" th:value="${propietario.getIdentification()}" name="identification" class="form-input"
-           required>
-
-    <label for="cellphone" class="form-label">Teléfono:</label>
-    <input type="text" id="cellphone" name="cellphone" th:value="${propietario.getCellphone()}" class="form-input" required>
-
-    <label for="location" class="form-label">Ubicación:</label>
-    <input type="text" id="location" name="location" th:value="${propietario.getLocation()}" class="form-input" required>
-
-    <label for="email" class="form-label">Email:</label>
-    <input type="email" id="email" name="email" th:value="${propietario.getEmail()}" class="form-input">
-
-    <button type="submit" class="form-button">Guardar</button>
-  </form>
 
 
 </div>
@@ -340,6 +324,13 @@
   const sidebarOpenBtn = document.querySelector("#sidebar-open");
   const sidebarCloseBtn = document.querySelector("#sidebar-close");
   const sidebarLockBtn = document.querySelector("#lock-icon");
+  const $ = (id) => document.querySelector("#" + id)
+
+  function deleteItem (id) {
+    const confirmado = confirm('¿Estas seguro de eliminar esta mascota?')
+    confirmado && (window.location.href = `/delete-mascota/${id}`)
+  }
+
 
   // Function to toggle the lock state of the sidebar
   const toggleLock = () => {
@@ -380,6 +371,7 @@
     sidebar.classList.remove("hoverable");
   }
 
+  // Adding event listeners to buttons and sidebar for the corresponding actions
   sidebarLockBtn.addEventListener("click", toggleLock);
   sidebar.addEventListener("mouseleave", hideSidebar);
   sidebar.addEventListener("mouseenter", showSidebar);

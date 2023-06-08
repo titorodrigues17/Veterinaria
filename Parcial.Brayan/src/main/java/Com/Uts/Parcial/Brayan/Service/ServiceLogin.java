@@ -1,11 +1,9 @@
 package Com.Uts.Parcial.Brayan.Service;
 
 import Com.Uts.Parcial.Brayan.Crypto.AESCryptoUtil;
-import Com.Uts.Parcial.Brayan.Entity.Proprietor;
 import Com.Uts.Parcial.Brayan.Entity.Role;
 import Com.Uts.Parcial.Brayan.Entity.User;
 import Com.Uts.Parcial.Brayan.Repository.LoginRepository;
-import Com.Uts.Parcial.Brayan.Repository.ProprietorRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +18,6 @@ public class ServiceLogin {
     @Autowired
     private LoginRepository loginRepository;
 
-    @Autowired
-    private ProprietorRepository proprietorRepository;
-
     @GetMapping("/")
     public String login(Model model, HttpSession session){
         try {
@@ -33,6 +28,11 @@ public class ServiceLogin {
             System.out.println(e.getMessage());
             return "Login";
         }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.setAttribute("usuario", null);
+        return "redirect:/";
     }
 
     @GetMapping("/dashboard")
@@ -51,6 +51,7 @@ public class ServiceLogin {
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                return "redirect:/";
             }
         }
         return "redirect:/";
@@ -92,40 +93,6 @@ public class ServiceLogin {
             return "redirect:/error";
         }
         return "redirect:/";
-    }
-
-    @GetMapping("/propietario")
-    public String listarPropietarios(Model model) {
-        List<Proprietor> propietarios = proprietorRepository.findAll();
-        model.addAttribute("propietarios", propietarios);
-        return "Propietario";
-    }
-
-    @GetMapping("/add-propietario")
-    public String showPropietario(Model model) {
-        model.addAttribute("propietario", new Proprietor());
-        return "Add-propietario";
-    }
-
-    @PostMapping("/add-propietario")
-    public String addPropietario(@ModelAttribute Proprietor proprietor, Model model) {
-        proprietorRepository.save(proprietor);
-
-        return "redirect:/propietario";
-    }
-
-    @GetMapping("/edit-propietario/{id}")
-    public String showEditPropietario(@PathVariable("id") Long id, Model model) {
-        Proprietor proprietor = proprietorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid propietario Id:" + id));
-        model.addAttribute("propietario", proprietor);
-        return "Add-propietario";
-    }
-
-    @GetMapping("/delete-propietario/{id}")
-    public String deletePropietario(@PathVariable("id") Long id, Model model) {
-        Proprietor proprietor = proprietorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid propietario Id:" + id));
-        proprietorRepository.delete(proprietor);
-        return "redirect:/propietario";
     }
 
     @RequestMapping(value = "*", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})

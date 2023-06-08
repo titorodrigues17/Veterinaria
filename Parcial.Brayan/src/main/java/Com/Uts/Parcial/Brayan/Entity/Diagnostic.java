@@ -1,6 +1,8 @@
 package Com.Uts.Parcial.Brayan.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "diagnostic")
@@ -11,6 +13,7 @@ public class Diagnostic {
     private String name;
     private String description;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Pet pet;
 
     public Long getId() {

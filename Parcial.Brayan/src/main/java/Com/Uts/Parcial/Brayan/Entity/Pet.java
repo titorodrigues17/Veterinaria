@@ -2,6 +2,8 @@ package Com.Uts.Parcial.Brayan.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "pet")
@@ -14,8 +16,7 @@ public class Pet {
     private String name;
     @NotEmpty
     private String breed;
-    @NotEmpty
-    private int age;
+    private @NotEmpty String age;
     @NotEmpty
     private String gender;
     @NotEmpty
@@ -23,12 +24,13 @@ public class Pet {
 
     @ManyToOne
     @JoinColumn(name = "proprietor_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Proprietor proprietor;
 
     public Pet() {
     }
 
-    public Pet(String name, String breed, int age, String gender, String vaccines, Proprietor proprietor) {
+    public Pet(String name, String breed, @NotEmpty String age, String gender, String vaccines, Proprietor proprietor) {
         this.name = name;
         this.breed = breed;
         this.age = age;
@@ -37,7 +39,7 @@ public class Pet {
         this.proprietor = proprietor;
     }
 
-    public Pet(Long id, String name, String breed, int age, String gender, String vaccines, Proprietor proprietor) {
+    public Pet(Long id, String name, String breed, @NotEmpty String age, String gender, String vaccines, Proprietor proprietor) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -71,11 +73,11 @@ public class Pet {
         this.breed = breed;
     }
 
-    public int getAge() {
+    public @NotEmpty String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(@NotEmpty String age) {
         this.age = age;
     }
 
