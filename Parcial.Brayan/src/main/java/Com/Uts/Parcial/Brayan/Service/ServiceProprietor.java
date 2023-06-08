@@ -36,6 +36,13 @@ public class ServiceProprietor {
         return "redirect:/";
     }
 
+    @GetMapping("/listar-propietarios")
+    public String listarPropietarios(Model model) {
+        model.addAttribute("titulo", "Listado de Propietarios");
+        model.addAttribute("propietarios", proprietorRepository.findAll());
+        return "listar";
+    }
+
     @GetMapping("/add-propietario")
     public String showPropietario(Model model, HttpSession session) {
         User oldUser = (User) session.getAttribute("usuario");

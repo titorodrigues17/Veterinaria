@@ -134,7 +134,7 @@
 
     <button type="submit" class="btn btn-register">Register</button>
   </form>
-  <p>Already have an account? <a th:href="@{/login}" class="btn-login">Login</a></p>
+  <p>Already have an account? <a th:href="@{/}" class="btn-login">Login</a></p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -143,7 +143,7 @@
   $(document).ready(function () {
     $('.toggle-password').click(function () {
       $(this).toggleClass('active');
-      var input = $(this).parent().prev('input');
+      const input = $(this).parent().prev('input');
       if (input.attr('type') === 'password') {
         input.attr('type', 'text');
       } else {
