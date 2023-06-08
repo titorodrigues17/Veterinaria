@@ -30,7 +30,7 @@
         </li>
         <li class="item" th:if="${role.equals('empleado')}">
           <a th:href="@{/mascota}" class="link flex">
-            <i class="bx bx-dog"></i>
+            <i class="bx bx-docker"></i>
             <span>Mascotas</span>
           </a>
         </li>
@@ -42,7 +42,7 @@
         </li>
         <li class="item" th:if="${role.equals('administrador')}">
           <a th:href="@{/usuario}" class="link flex">
-            <i class="bx bx-user-badge"></i>
+            <i class="bx bx-user"></i>
             <span>Usuario</span>
           </a>
         </li>
@@ -61,7 +61,7 @@
         </li>
         <li class="item" th:if="${role.equals('empleado')}">
           <a th:href="@{/add-mascota}" class="link flex">
-            <i class="bx bx-cat"></i>
+            <i class="bx bx-postgresql"></i>
             <span>Añadir Mascota</span>
           </a>
         </li>
