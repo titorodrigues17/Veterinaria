@@ -2,6 +2,7 @@ package Com.Uts.Parcial.Brayan.Service;
 
 import Com.Uts.Parcial.Brayan.Crypto.AESCryptoUtil;
 import Com.Uts.Parcial.Brayan.Entity.Proprietor;
+import Com.Uts.Parcial.Brayan.Entity.Role;
 import Com.Uts.Parcial.Brayan.Entity.User;
 import Com.Uts.Parcial.Brayan.Repository.LoginRepository;
 import Com.Uts.Parcial.Brayan.Repository.ProprietorRepository;
@@ -85,6 +86,7 @@ public class ServiceLogin {
         try {
             String encryptedPassword = AESCryptoUtil.encrypt(user.getPassword());
             user.setPassword(encryptedPassword);
+            user.setRole(new Role(3L));
             loginRepository.save(user);
         } catch (Exception e) {
             return "redirect:/error";
@@ -110,11 +112,6 @@ public class ServiceLogin {
 
         return "redirect:/propietario";
     }
-
-
-
-
-
 
     @RequestMapping(value = "*", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
     public String error() {
