@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  </head>
+  <body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: #eef5fe;
+      display: grid;
+      place-items: center;
+    }
+    .button {
+      height: 50px;
+      text-decoration: none;
+        width: 100%;
+      display: flex;
+      font-size: 22px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      background-color: #4070f440;
+      transition: all ease-in-out 0.3s;
+      color: white;
+    }
+    .button:hover {
+      background-color: #4070f4;
+    }
+    h4 {
+      font-size: 22px;
+      color: #333;
+      font-weight: 500;
+    }
+    .content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .title {
+      font-size: 100px;
+      font-weight: 700;
+      color: #4070f4;
+    }
+  </style>
+  <div class="content">
+    <h1 class="title">404</h1>
+    <h4>Back to home</h4>
+    <a th:href="@{/}" class="button">Back</a>
+  </div>
+  </body>
+</html>
+
