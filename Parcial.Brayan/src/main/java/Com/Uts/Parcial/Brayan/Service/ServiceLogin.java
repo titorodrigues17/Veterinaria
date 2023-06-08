@@ -1,19 +1,26 @@
 package Com.Uts.Parcial.Brayan.Service;
 
 import Com.Uts.Parcial.Brayan.Crypto.AESCryptoUtil;
+import Com.Uts.Parcial.Brayan.Entity.Proprietor;
 import Com.Uts.Parcial.Brayan.Entity.User;
 import Com.Uts.Parcial.Brayan.Repository.LoginRepository;
+import Com.Uts.Parcial.Brayan.Repository.ProprietorRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ServiceLogin {
 
     @Autowired
     private LoginRepository loginRepository;
+
+    @Autowired
+    private ProprietorRepository proprietorRepository;
 
     @GetMapping("/")
     public String login(Model model, HttpSession session){
@@ -84,6 +91,30 @@ public class ServiceLogin {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/propietario")
+    public String listarPropietarios(Model model) {
+        List<Proprietor> propietarios = proprietorRepository.findAll();
+        model.addAttribute("propietarios", propietarios);
+        return "Propietario";
+    }
+
+    @GetMapping("/add-propietario")
+    public String showPropietario() {
+        return "Add-propietario";
+    }
+
+    @PostMapping("/add-propietario")
+    public String addPropietario(@ModelAttribute Proprietor proprietor, Model model) {
+        proprietorRepository.save(proprietor);
+
+        return "redirect:/propietario";
+    }
+
+
+
+
+
 
     @RequestMapping(value = "*", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
     public String error() {

@@ -22,30 +22,28 @@ public class Proprietor {
     private String location;
     private String email;
 
-    @OneToMany(mappedBy = "proprietor", cascade = CascadeType.ALL)
-    private List<Pet> pets;
+
 
 
     public Proprietor() {
     }
 
-    public Proprietor(String name, String identification, String cellphone, String location, String email, List<Pet> pets) {
+    public Proprietor(String name, String identification, String cellphone, String location, String email) {
         this.name = name;
         this.identification = identification;
         this.cellphone = cellphone;
         this.location = location;
         this.email = email;
-        this.pets = pets;
+
     }
 
-    public Proprietor(Long id, String name, String identification, String cellphone, String location, String email, List<Pet> pets) {
+    public Proprietor(Long id, String name, String identification, String cellphone, String location, String email) {
         this.id = id;
         this.name = name;
         this.identification = identification;
         this.cellphone = cellphone;
         this.location = location;
         this.email = email;
-        this.pets = pets;
     }
 
     public Long getId() {
@@ -96,11 +94,5 @@ public class Proprietor {
         this.email = email;
     }
 
-    public List<Pet> getMascotas() {
-        return pets;
-    }
 
-    public void setMascotas(List<Pet> pets) {
-        this.pets = pets;
-    }
 }
