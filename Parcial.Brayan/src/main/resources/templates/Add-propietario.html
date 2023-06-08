@@ -396,19 +396,22 @@
 
   <form id="add-proprietor-form" class="form-container" th:action="@{/add-propietario}" method="POST">
     <label for="name" class="form-label">Nombre:</label>
-    <input type="text" id="name" name="name" class="form-input" required>
+    <input type="text" id="name" name="name" th:value="${propietario.getName()}" class="form-input" required>
+
+    <input type="text" id="id" name="id" th:value="${propietario.getId()}" class="form-input" style="display: none">
 
     <label for="identification" class="form-label">Identificación:</label>
-    <input type="text" id="identification" name="identification" class="form-input" required>
+    <input type="text" id="identification" th:value="${propietario.getIdentification()}" name="identification" class="form-input"
+           required>
 
     <label for="cellphone" class="form-label">Teléfono:</label>
-    <input type="text" id="cellphone" name="cellphone" class="form-input" required>
+    <input type="text" id="cellphone" name="cellphone" th:value="${propietario.getCellphone()}" class="form-input" required>
 
     <label for="location" class="form-label">Ubicación:</label>
-    <input type="text" id="location" name="location" class="form-input" required>
+    <input type="text" id="location" name="location" th:value="${propietario.getLocation()}" class="form-input" required>
 
     <label for="email" class="form-label">Email:</label>
-    <input type="email" id="email" name="email" class="form-input">
+    <input type="email" id="email" name="email" th:value="${propietario.getEmail()}" class="form-input">
 
     <button type="submit" class="form-button">Guardar</button>
   </form>

@@ -102,7 +102,8 @@ public class ServiceLogin {
     }
 
     @GetMapping("/add-propietario")
-    public String showPropietario() {
+    public String showPropietario(Model model) {
+        model.addAttribute("propietario", new Proprietor());
         return "Add-propietario";
     }
 
@@ -110,6 +111,20 @@ public class ServiceLogin {
     public String addPropietario(@ModelAttribute Proprietor proprietor, Model model) {
         proprietorRepository.save(proprietor);
 
+        return "redirect:/propietario";
+    }
+
+    @GetMapping("/edit-propietario/{id}")
+    public String showEditPropietario(@PathVariable("id") Long id, Model model) {
+        Proprietor proprietor = proprietorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid propietario Id:" + id));
+        model.addAttribute("propietario", proprietor);
+        return "Add-propietario";
+    }
+
+    @GetMapping("/delete-propietario/{id}")
+    public String deletePropietario(@PathVariable("id") Long id, Model model) {
+        Proprietor proprietor = proprietorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid propietario Id:" + id));
+        proprietorRepository.delete(proprietor);
         return "redirect:/propietario";
     }
 

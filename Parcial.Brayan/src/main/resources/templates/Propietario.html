@@ -365,10 +365,6 @@
 <div class="navbar">
 
   <button class="button" >Añadir Propietario </button>
-
-
-
-
   <table>
     <tr>
       <th>ID</th>
@@ -387,8 +383,9 @@
       <td th:text="${propietario.cellphone}"></td>
       <td th:text="${propietario.location}"></td>
       <td th:text="${propietario.email}"></td>
-      <td><button  class="button">Actualizar</button></td>
-      <td><button class="button">Eliminar</button></td>
+      <td><a class="button" th:href="@{/edit-propietario/} + ${propietario.id}">Actualizar</a></td>
+      <td><button th:onclick="'deleteItem(' + ${propietario.getId()} + ')'" class="button" id="delete">Eliminar
+      </button></td>
     </tr>
   </table>
 
@@ -410,6 +407,13 @@
   const sidebarOpenBtn = document.querySelector("#sidebar-open");
   const sidebarCloseBtn = document.querySelector("#sidebar-close");
   const sidebarLockBtn = document.querySelector("#lock-icon");
+  const $ = (id) => document.querySelector("#" + id)
+
+  function deleteItem (id) {
+    const confirmado = confirm('¿Estas seguro de eliminar este propietario?')
+    confirmado && (window.location.href = `/delete-propietario/${id}`)
+  }
+
 
   // Function to toggle the lock state of the sidebar
   const toggleLock = () => {
